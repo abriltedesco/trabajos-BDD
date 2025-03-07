@@ -20,9 +20,9 @@ SELECT codigo, nombre FROM proveedor WHERE codigo IN
 SELECT codigo FROM articulo ORDER BY precio DESC LIMIT 5;
 
 /* 6) Mostrar el nombre del producto que tiene mayor stock, teniendo en cuenta todos los
-almacenes. */
-SELECT descripcion FROM articulo WHERE codigo IN 
-(SELECT articulo_codigo FROM tiene ORDER BY stock, almacen_codigo DESC );
+almacenes. */select descripcion from articulo join tiene on codigo = articulo_cdgio 
+group by codigo having sum(stock) =(select max(alias) from (select sum(stock)
+as alias from tiene group by articulo_codigo) as aux);
 
 SELECT descripcion FROM articulo JOIN tiene ON codigo = articulo_codigo 
 GROUP BY codigo ORDER BY sum(stock) DESC LIMIT 1;
