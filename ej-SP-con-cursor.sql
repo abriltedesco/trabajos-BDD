@@ -23,19 +23,39 @@ call get_ciudades_offices(@listadoCiudades);
 select @listadoCiudades;
 
 /* 
-10. Agregue una tabla llamada CancelledOrders con el mismo diseño que la tabla de Orders.
-SP que recorra orders y cuente la cant de órdenes en estado cancelled. Insertar fila
-en la tabla CancelledOrders por cada orden cancelada y tiene que devolver la cantidad de órdenes canceladas.
+10. Agregar tabla CancelledOrders con el mismo diseño que Orders. SP que recorra orders y cuente la cant
+de órdenes en estado cancelled. Insertar fila en la tabla CancelledOrders por cada orden cancelada
+y tiene que devolver la cantidad de órdenes canceladas.
 */
 
+CREATE TABLE CancelledOrders(
+	order_number int
+);
 delimiter // 
-create procedure insertCancelledOrders()
+create procedure insert_CancelledOrders(out cant int)
 begin
 	declare hayFilas boolean default 1;
-    declare cantOrdenesCanceladas int default 0;
-    declare ordersCursor cursor for ;
+    declare ordenObtenida varchar(45) default "";
+    DECLARE ordersCursor CURSOR FOR SELECT orderNumber FROM orders WHERE orders.status = "Cancelled";
+	declare continue handler for not found set hayFilas = 0;
+	OPEN ordersCursor;
+		ordersLoop:loop
+			FETCH ordersCursor INTO ordenObtenida;
+				IF hayFilas = 0 THEN
+					LEAVE ordersLoop;
+				END IF;
+			INSERT INTO CancelledOrders VALUE (ordenObtenida);
+            
+		end loop ordersLoop;
+	CLOSE ordersCursor;
+    
+    SELECT count(*) INTO cant FROM CancelledOrders;
 end //
 delimiter ;
+
+call insert_CancelledOrders(@cant);
+select @cant;
+
 
 /*
 11. Realizar un SP que reciba el customerNumber y para todas las órdenes de ese
