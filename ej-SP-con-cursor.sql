@@ -31,11 +31,12 @@ y tiene que devolver la cantidad de órdenes canceladas.
 CREATE TABLE CancelledOrders(
 	order_number int
 );
+drop procedure insert_CancelledOrders;
 delimiter // 
 create procedure insert_CancelledOrders(out cant int)
 begin
 	declare hayFilas boolean default 1;
-    declare ordenObtenida varchar(45) default "";
+    declare ordenObtenida int;
     DECLARE ordersCursor CURSOR FOR SELECT orderNumber FROM orders WHERE orders.status = "Cancelled";
 	declare continue handler for not found set hayFilas = 0;
 	OPEN ordersCursor;
@@ -45,10 +46,8 @@ begin
 					LEAVE ordersLoop;
 				END IF;
 			INSERT INTO CancelledOrders VALUE (ordenObtenida);
-            
 		end loop ordersLoop;
 	CLOSE ordersCursor;
-    
     SELECT count(*) INTO cant FROM CancelledOrders;
 end //
 delimiter ;
@@ -58,27 +57,82 @@ select @cant;
 
 
 /*
-11. Realizar un SP que reciba el customerNumber y para todas las órdenes de ese
-customerNumber, si el campo comments esta vacío que lo complete con el siguiente
-comentario: “El total de la orden es … “ Y el total de la orden tendrá que calcularlo el
-procedimiento sumando todos los productos incluidos en la orden de la tabla OrderDetails.
+11. SP que reciba el customerNumber y para todas las órdenes de ese, si el campo comments esta vacío 
+que lo complete con el siguiente comentario: “El total de la orden es … “ Y el total de la orden tendrá 
+que calcularlo el procedimiento sumando todos los prods incluidos en la orden de la tabla OrderDetails.
 */
-
+drop procedure alterCustomer;
 delimiter // 
-create procedure alterCommentOrder()
+create procedure alterCustomer(in numCliente int)
 begin
 	declare hayFilas boolean default 1;
+    declare ordenObtenida int;
+    declare totalOrden float default 0;
+    DECLARE ordersCursor CURSOR FOR 
+    SELECT orderNumber FROM orders WHERE comments IS NULL and numCliente = customerNumber;
+	declare continue handler for not found set hayFilas = 0;
+	OPEN ordersCursor;
+		ordersLoop:loop
+			FETCH ordersCursor INTO ordenObtenida;
+					IF hayFilas = 0 THEN
+						LEAVE ordersLoop;
+					END IF;
+                    
+                SET totalOrden = (SELECT sum(quantityOrdered * priceEach) 
+								  FROM orderdetails WHERE orderNumber = ordenObtenida);
+                UPDATE orders SET comments = concat("El total de la orden es:", totalOrden);
+		end loop ordersLoop;
+	CLOSE ordersCursor;
 end //
 delimiter ;
 
+call alterCustomer(10102);
+
 /*
-12. Crear un SP que devuelva en un parámetro de salida los mails de los clientes que
-cancelaron una orden y no volvieron a comprar.
+12. SP que devuelva mails de los clientes que cancelaron una orden y no volvieron a comprar.
 */
 
 delimiter // 
-create procedure salidaMails()
+create procedure salidaMails(out mails text)
 begin
 	declare hayFilas boolean default 1;
+    declare ordenObtenida varchar(45) default "";
+    DECLARE ordersCursor CURSOR FOR
+		SELECT orderNumber FROM orders WHERE orders.status = "Cancelled";
+	declare continue handler for not found set hayFilas = 0;
+	OPEN ordersCursor;
+		ordersLoop:loop
+			FETCH ordersCursor INTO ordenObtenida;
+				IF hayFilas = 0 THEN
+					LEAVE ordersLoop;
+				END IF;
+		end loop ordersLoop;
+	CLOSE ordersCursor;
+end //
+delimiter ;
+
+/* 13. columna comisión en employees. SP que actualice la comisión de cada empleado.
+Si tiene ventas > $100,000, comisión = 5%, ventas entre $50,000 y $100,000, 3%. Si tiene <
+$50,000 en ventas, no recibe comisión. */
+delimiter //
+create procedure alterarComision() 
+begin
+	
+end //
+delimiter ;
+
+ALTER TABLE employees ADD COLUMN comision float;
+ 
+SELECT sum(quantityOrdered * priceEach) as totalPedido, orders.customerNumber, salesRepEmployeeNumber FROM orderdetails
+JOIN orders ON orders.orderNumber = orderdetails.orderNumber
+JOIN customers ON customers.customerNumber = orders.customerNumber
+GROUP BY orders.customerNumber;
+/* 14. Crear un stored procedure que le asigne un empleado a los clientes que no tengan ninguno
+asignado. El empleado asignado debe ser el que actualmente atienda a la menor cantidad
+de clientes.. */
+
+delimiter //
+create procedure asignarEmpleados() 
+begin
 end //
 delimiter ;
