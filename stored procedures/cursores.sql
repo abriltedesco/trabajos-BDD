@@ -129,14 +129,16 @@ call crearNivel();
 
 /*  5. Realice un procedimiento que actualice el precio unitario de los productos que están en
 pedidos pendientes de pago, al precio actual del producto */
+
 delimiter //
 create procedure actualizarPrecioUnit()
 begin
 	declare hayFilas boolean default 1;
     declare prodObtenido int default 0;
     declare precioObtenido int default 0;
+    declare idPedObtenido int default 0;
     declare prodCursor CURSOR FOR 
-		SELECT Producto_codProducto FROM pedido
+		SELECT Producto_codProducto, idPedido, precio FROM pedido
 		JOIN pedido_producto ON idPedido = Pedido_idPedido
 		JOIN estado ON Estado_idEstado = idEstado
 		WHERE estado.nombre = "Pago Pendiente";
@@ -144,14 +146,13 @@ begin
     
     open prodCursor;
     ploop:loop
-		fetch prodCursor into prodObtenido;
+		fetch prodCursor into prodObtenido, idPedObtenido, precioObtenido;
 			if hayFilas = 0 then
 				leave ploop;
             end if;
-            
-            /* suponiendo que el precio actual es un 25% mas del de ese momento */
-			UPDATE producto SET precio = precio + (precio*0.25)
-            WHERE codProducto = prodObtenido;
+                        
+            UPDATE pedido_producto SET precioUnitario = precioUnitario + precioObtenido
+            WHERE Producto_codProducto = prodObtenido AND Pedido_idPedido = idPedObtenido;
 	end loop;
     close prodCursor;
 end //
