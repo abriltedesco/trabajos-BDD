@@ -91,100 +91,95 @@ delimiter ;
 call alterCustomer(181);
 
 /*
-12. SP que devuelva mails de los clientes que cancelaron una orden y no volvieron a comprar.
-*/
-delimiter ;
-create procedure salidaMails(out mails text) begin
-    declare hayFilas int default 1;
-    declare mailObtenido VARCHAR(100);
+12. SP que devuelva telefonos de los clientes que cancelaron una orden y no volvieron a comprar. */
+DROP procedure salidaPhones;
+
+delimiter //
+create procedure salidaPhones(out phones text) begin
+    declare hayFilas boolean default 1;
+    declare telefonoObtenido text default "-";
     
-    DECLARE mailCursor CURSOR FOR SELECT emails FROM customers WHERE customers.customerNumber NOT IN (
-      SELECT o.customerNumber FROM orders o WHERE status != 'Cancelled' 
-      AND orderDate > (
+    DECLARE telefonoCursor CURSOR FOR 
+    SELECT phone FROM customers WHERE customers.customerNumber NOT IN (
+	SELECT o.customerNumber FROM orders o WHERE status != "Cancelled"
+    AND orderDate > (
         SELECT MAX(orderDate) FROM orders o2
-        WHERE o.customerNumber = o2.customerNumber 
-        AND status = 'Cancelled')
+		WHERE o.customerNumber = o2.customerNumber AND status = "Cancelled")
         );
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET hayFilas = 0;
 
-    SET mails = '';
+    SET phones = "";
 
-    OPEN mailCursor;
-    mailLoop: LOOP
-        FETCH mailcursor INTO mailObtenido;
-        IF noHayFilas THEN
-            LEAVE mailLoop;
+    OPEN telefonoCursor;
+    tloop: LOOP
+        FETCH telefonoCursor INTO telefonoObtenido;
+        IF hayFilas = 0 THEN
+            LEAVE tloop;
         END IF;
 
-        SET mails = CONCAT(mails, mailObtenido, ', ');
+        SET phones = CONCAT(telefonoObtenido, ", ", phones);
     END LOOP;
+    CLOSE telefonoCursor;
+end //
+delimiter ; 
 
-    CLOSE mailCursor;
-    SET mails = TRIM(TRAILING ', ' FROM mails);
-END //
 
-DELIMITER ;
+select @phones;
+call salidaPhones(@phones);
 
-select @mails;
-call salidaMails(@mails);
+
 
 /* 13. columna comisión en employees. SP que actualice la comisión de cada empleado.
 Si tiene ventas > $100,000, comisión = 5%, ventas entre $50,000 y $100,000, 3%. Si tiene <
 $50,000 en ventas, no recibe comisión. */ 
+ALTER TABLE employees ADD COLUMN comision float ;
+  
 delimiter //
-
 create procedure alterarComision() begin
-  DECLARE noHayFilas INT DEFAULT FALSE;
-  DECLARE totalObtenido FLOAT DEFAULT 0;
-  DECLARE numEmpleado INT;
+  DECLARE hayFilas boolean default 1;
+  DECLARE totalObtenido float default 0;
+  DECLARE numEmpleado int default 0;
+  DECLARE ventasConComision FLOAT default 0.0;
 
-  ALTER TABLE employees ADD COLUMN IF NOT EXISTS comision FLOAT ;
-
-  DECLARE totalCursor CURSOR FOR
-    SELECT SUM(totalPedido) AS totalPorEmpleado, salesRepEmployeeNumber
-    FROM (
-      SELECT SUM(quantityOrdered * priceEach) AS totalPedido,
-             orders.customerNumber, orders.salesRepEmployeeNumber
-      FROM orderdetails
-      JOIN orders ON orders.orderNumber = orderdetails.orderNumber
-      JOIN customers ON customers.customerNumber = orders.customerNumber
-      GROUP BY orders.customerNumber
-    ) AS tP
+  declare totalCursor CURSOR FOR
+  SELECT SUM(totalPedido) AS totalPorEmpleado, salesRepEmployeeNumber FROM 
+	(SELECT SUM(quantityOrdered * priceEach) AS totalPedido,
+		orders.customerNumber, salesRepEmployeeNumber
+    FROM orderdetails
+    JOIN orders ON orders.orderNumber = orderdetails.orderNumber
+	JOIN customers ON customers.customerNumber = orders.customerNumber
+	GROUP BY orders.customerNumber) AS tP
     GROUP BY salesRepEmployeeNumber;
-
-  DECLARE CONTINUE HANDLER FOR NOT FOUND SET noHayFilas = TRUE;
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET hayFilas = 0;
 
   OPEN totalCursor;
-
   totalLoop:loop
-    FETCH totalCursor INTO totalObtenido, numEmpleado;
-    IF noHayFilas THEN 
-      LEAVE totalLoop;
-    END IF;
+		FETCH totalCursor INTO totalObtenido, numEmpleado;
+		IF hayFilas = 0 THEN 
+		  LEAVE totalLoop;
+		END IF;
  
- /* como todas las ventas daban +300k meti otros valores para hacer la comprobación*/
-  DECLARE ventasConComision FLOAT;
-  IF (totalObtenido > 500000) THEN
-    SET ventasConComision = totalObtenido + (totalObtenido * 0.5);
-  ELSE IF (totalObtenido < 100000) THEN 
-    SET ventasConComision = totalObtenido;
-  ELSE
-    SET ventasConComision = totalObtenido + (totalObtenido * 0.3);
-  END IF;
+	 /* como todas las ventas daban +300k meti otros valores para hacer la comprobación*/
+	  IF (totalObtenido > 500000) THEN
+		SET ventasConComision = totalObtenido + (totalObtenido * 0.5);
+	  ELSE IF (totalObtenido < 100000) THEN 
+		SET ventasConComision = totalObtenido;
+	  ELSE
+		SET ventasConComision = totalObtenido + (totalObtenido * 0.3);
+	  END IF;
+      END IF;
 
-  
-    UPDATE employees SET comision = ventasConComision 
-    WHERE employeeNumber = numEmpleado; 
+    UPDATE employees SET comision = ventasConComision WHERE employeeNumber = numEmpleado; 
     
-  END loop;
+  END LOOP;
   CLOSE totalCursor;
-END //
-
+end //
 delimiter ;
 
 CALL alterarComision();
 SELECT employeeNumber, comision FROM employees;
+
 
 /* 14. Crear un stored procedure que le asigne un empleado a los clientes que no tengan ninguno
 asignado. El empleado asignado debe ser el que actualmente atienda a la menor cantidad
@@ -209,18 +204,19 @@ begin
   declare numCliente int;
   declare empleadoObtenido int;
   declare minimo int default 0;
-  SET minimo = (SELECT minimoCant()); 
   
-  DECLARE clientesCursor CURSOR FOR SELECT customerNumber FROM customers WHERE salesRepEmployeeNumber IS NULL;
+  declare clientesCursor CURSOR FOR SELECT customerNumber FROM customers
+  WHERE salesRepEmployeeNumber IS NULL;
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET hayFilas = 0;
   
   OPEN clientesCursor;
   clientesLoop : loop
     FETCH clientesCursor INTO numCliente;
-    IF hayFilas = 0 THEN
-      LEAVE clientesLoop
-    END IF;
-    
+		IF hayFilas = 0 THEN
+		  LEAVE clientesLoop;
+		END IF;
+        
+    SET minimo = (SELECT minimoCant()); 
     SELECT ss.salesRepEmployeeNumber INTO empleadoObtenido FROM
       (SELECT salesRepEmployeeNumber, count(*) as cant FROM customers
       WHERE salesRepEmployeeNumber IS NOT NULL GROUP BY salesRepEmployeeNumber) 
@@ -229,10 +225,9 @@ begin
     UPDATE customers SET salesRepEmployeeNumber = empleadoObtenido 
     WHERE customerNumber = numCliente;
     
-  END loop;
+  END LOOP;
   CLOSE clientesCursor;
-  
-  
-  
 end //
 delimiter ;
+
+call asignarEmpleados();
