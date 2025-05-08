@@ -14,8 +14,8 @@ begin
 end // 
 delimiter ;
 
-INSERT INTO customers VALUES 
-(497, "lelele", "swift", "taylor", "+1133345", "dsadsd", null, "L.A", "California", "1444", "usa", 1002, 35.000);
+INSERT INTO customers VALUE
+(497, "lelele", "swift", "taylor", "+1133345", "dsadsd", "Df", "L.A", "California", "1440", "usa", 1370, 35.00);
 
 /* b- antes de una modif en customers que deje los datos antes de ser modif en la tabla customers_audit. */ 
 
@@ -27,7 +27,6 @@ end //
 delimiter ;
 
 UPDATE customers SET creditLimit = 0.0 WHERE country = "USA";
-
 /* c- trigger que, antes de borrar una fila en la tabla de customers, inserte los
 datos anteriores en la tabla customes_audit. */ 
 
@@ -52,12 +51,11 @@ CREATE TABLE empleadosAudit (
     fecha_ult_modif date
 );
 
-
 /* ? */
 delimiter //
 create trigger before_insert_empleados before insert on employees for each row
 begin
-	insert into empleadosAudit values ("insert", new.employeeNumber, new.employee);
+	insert into empleadosAudit values ("insert", new.employeeNumber, new.lastName, new.email, current_date());
 end //
 delimiter ;
 
@@ -104,23 +102,21 @@ delimiter ;
 /* 3) Hacer un trigger que ante el intento de borrar un producto verifique que dicho producto
 no exista en las órdenes cuya orderDate sea menor a dos meses. Si existe debe tirar un
 error que diga “Error, tiene órdenes asociadas”. */
-
+DROP FUNCTION existe_en_ordenes;
 delimiter //
-create function existe_en_ordenes(cod_prod text) returns text deterministic
+create function existe_en_ordenes(cod_prod text) returns boolean deterministic
 begin
-    declare existe text default "no";
+    declare existe boolean default false;
 	declare codigo text default "000" ;
     SELECT productCode INTO codigo FROM orderdetails 
     WHERE orderNumber IN (SELECT orderNumber FROM orders WHERE orderDate < "2003-04-24")
 	AND productCode = cod_prod;
     IF cod_prod = codigo THEN
-		set existe = "si";
+		set existe =  true;
 	END IF;
     return existe;
 end //
 delimiter ;
-
-select existe_en_ordenes("S18_1342");
 
 delimiter // 
 create trigger intento_borrar_prod before delete on products for each row
