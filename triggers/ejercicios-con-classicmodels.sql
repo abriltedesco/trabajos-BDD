@@ -10,19 +10,19 @@ CREATE TABLE customers_audit (
 delimiter // 
 create trigger after_insert_customers after insert on customers for each row
 begin
-	insert into customers_audit values ("insert", new.customerNumber, new.customerName, current_date());
+	insert into customers_audit values (null,"insert", new.customerNumber, new.customerName, current_date());
 end // 
 delimiter ;
 
 INSERT INTO customers VALUE
-(497, "lelele", "swift", "taylor", "+1133345", "dsadsd", "Df", "L.A", "California", "1440", "usa", 1370, 35.00);
+(497, "lelele", "swift", "taylor", "1133345", "dsadsd", "Df", "L.A", "California", "1440", "usa", 1370, 35.00);
 
 /* b- antes de una modif en customers que deje los datos antes de ser modif en la tabla customers_audit. */ 
 
 delimiter // 
 create trigger before_modif_customers before update on customers for each row
 begin
-	insert into customers_audit values ("update", old.customerNumber, old.customerName, current_date());
+	insert into customers_audit values (null,"update", old.customerNumber, old.customerName, current_date());
 end //
 delimiter ;
 
@@ -55,7 +55,7 @@ CREATE TABLE empleadosAudit (
 delimiter //
 create trigger before_insert_empleados before insert on employees for each row
 begin
-	insert into empleadosAudit values ("insert", new.employeeNumber, new.lastName, new.email, current_date());
+	insert into empleadosAudit values (null, "insert", new.employeeNumber, new.lastName, new.email, current_date());
 end //
 delimiter ;
 
@@ -63,54 +63,57 @@ delimiter ;
 delimiter //
 create trigger after_insert_empleados after insert on employees for each row
 begin
-	insert into empleadosAudit values ("insert", new.employeeNumber, new.firstName, new.email, current_date());
+	insert into empleadosAudit values (null, "insert", new.employeeNumber, new.firstName, new.email, current_date());
 end //
 delimiter ;
-
 INSERT INTO employees VALUES
-(1122, "eilish", "billie", "x5555", "beilish@hotmail.com", 1, 1002, "VP Marketing");
+(1122, "eilish", "billie", "x5555", "beilish@hotmail.com", 1, 1002, "VP Marketing", 503721);
 
 delimiter //
 create trigger before_update_empleados before update on employees for each row
 begin
-	insert into empleadosAudit values ("update", old.employeeNumber, old.firstName, old.email, current_date());	
+	insert into empleadosAudit values (null, "update", old.employeeNumber, old.firstName, old.email, current_date());	
 end //
 delimiter ;
+UPDATE employees SET officeCode = 5 WHERE employeeNumber = 1002;
 
 delimiter //
 create trigger after_update_empleados after update on employees for each row
 begin
-	insert into empleadosAudit values ("update", new.employeeNumber, new.firstName, new.email, current_date());
+	insert into empleadosAudit values (null,"update", new.employeeNumber, new.firstName, new.email, current_date());
 end //
 delimiter ;
+UPDATE employees SET reportsTo = 1002 WHERE employeeNumber = 1143;
 
 delimiter //
 create trigger before_delete_empleados before delete on employees for each row
 begin
-	insert into empleadosAudit values ("delete", old.employeeNumber, old.firstName, old.email, current_date());	
+	insert into empleadosAudit values (null,"delete", old.employeeNumber, old.firstName, old.email, current_date());	
 end //
 delimiter ;
 
 delimiter //
 create trigger after_delete_empleados after delete on employees for each row
 begin
-	insert into empleadosAudit values ("delete", old.employeeNumber, old.firstName, old.email, current_date());	
+	insert into empleadosAudit values (null,"delete", old.employeeNumber, old.firstName, old.email, current_date());	
 end //
 delimiter ;
 
+DELETE FROM employees WHERE employeeNumber = 1625;
 
 /* 3) Hacer un trigger que ante el intento de borrar un producto verifique que dicho producto
 no exista en las órdenes cuya orderDate sea menor a dos meses. Si existe debe tirar un
 error que diga “Error, tiene órdenes asociadas”. */
-DROP FUNCTION existe_en_ordenes;
+
 delimiter //
 create function existe_en_ordenes(cod_prod text) returns boolean deterministic
 begin
     declare existe boolean default false;
-	declare codigo text default "000" ;
+	declare codigo varchar(15) default "000" ;
     SELECT productCode INTO codigo FROM orderdetails 
     WHERE orderNumber IN (SELECT orderNumber FROM orders WHERE orderDate < "2003-04-24")
 	AND productCode = cod_prod;
+    
     IF cod_prod = codigo THEN
 		set existe =  true;
 	END IF;
