@@ -4,10 +4,10 @@ UPDATE estado SET nombre = "Delayed" WHERE idEstado = 2;
 
 delimiter //
 create event cambiarEstadoPedidos on schedule 
-at now() + interval 1 day do
+every 1 day starts now() do
 begin
 	UPDATE orders SET status = "Delayed"
-    WHERE status = "In process" AND requiredDate < current_date() ;
+    	WHERE status = "In process" AND requiredDate < current_date() ;
 end //
 delimiter ;
 
@@ -29,9 +29,9 @@ create event clientesMas10Pedidos on schedule
 every 1 month starts now() ends now() + interval 1 year do
 begin
 	UPDATE customers SET creditLimit = clienteLimit + (clienteLimit * 0.1)
-    WHERE customerNumber IN (SELECT customerNumber FROM orders 
-    WHERE orderDate > "2025-05-29"
-    GROUP BY customerNumber HAVING count(*) > 10);
+    	WHERE customerNumber IN (SELECT customerNumber FROM orders 
+    	WHERE orderDate > "2025-05-29"
+	GROUP BY customerNumber HAVING count(*) > 10);
 end //
 delimiter ;
 
@@ -40,9 +40,9 @@ si hay pagos pendientes de verificar y los marque como "Confirmed" si han pasado
 de 7 días. */
 delimiter //
 create event modificarPagosPend on schedule 
-every 1 week starts "2025-05-30 07:00:00" do
+every 1 week starts now() + interval 1 day do
 begin
-	
+	-- no comprendo como se verifican pagos pendientes, y donde se marca como confirmed? en status? comments?
 end //
 delimiter ;
 
@@ -55,6 +55,7 @@ CREATE TABLE reportes (
     fecha date,
     totalVentas int
 );
+
 delimiter //
 create function cantVentasPorDia() returns int deterministic
 begin
@@ -78,8 +79,8 @@ delimiter //
 create event reducirPrecios on schedule
 every 6 month starts "2025-07-01" do
 begin
-	SELECT productCode FROM orderdetails
+	UPDATE products SET buyPrice = buyPrice - (buyPrice * 0.05) WHERE productCode IN (SELECT productCode FROM orderdetails
     JOIN orders ON orders.orderNumber = orderdetails.orderNumber
-    WHERE 
+    WHERE orderDate < "2025-05-08");
 end //
 delimiter ;
