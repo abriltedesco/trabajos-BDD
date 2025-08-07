@@ -1,0 +1,21 @@
+main{
+    display: inline-block;
+
+}
+
+#circulo{
+    margin: 10%;
+    border-radius: 100%;
+    border-color: black;
+    border: 5px solid;
+    background-color: #B4DD1E;
+    height: 500px;
+    width: 500px;
+}
+
+#boton{
+    height: 100px;
+    width: 500px;
+    background-color: black;
+    margin: 10%;
+}

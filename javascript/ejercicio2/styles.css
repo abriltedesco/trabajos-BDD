@@ -1,0 +1,25 @@
+main{
+    display: inline-block;
+
+}
+
+form{
+    margin-left: 10%;
+}
+
+#circulo{
+    margin: 10%;
+    border-radius: 100%;
+    border-color: black;
+    border: 5px solid;
+    background-color: #6d6d6d;
+    height: 500px;
+    width: 500px;
+}
+
+#boton{
+    height: 50px;
+    width: 250px;
+    background-color: black;
+    margin: 10%;
+}
