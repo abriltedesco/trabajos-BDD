@@ -6,13 +6,14 @@ var celIngresado;
 const error = $("#msjError");
 
 function comprobaciones(){
+    console.log("ingreso a comprobaciones");
     if(nombreIngresado.includes(" ") || apellidoIngresado.includes(" ")){
         error.text("nombres ingresados erronamente");
     }
-    else if(contrasenia.length < 6){
+    else if(contraIngresada.length < 6){
         error.text("contraseña muy corta");
     }
-    else if(edad > 100 || edad < 1){
+    else if(edadIngresada > 100 || edadIngresada < 1){
         error.text("edad invalida");
     }
 }
@@ -28,18 +29,7 @@ $("#boton").click(function(){
   }
 )
 
-
-
-
-
-
-
-
-    
-
-
-
-
+/*
 const nombreIngresado = document.getElementById("nombre");
 const apellidoIngresado = document.getElementById("apellido");
 const edadIngresada = document.getElementById("edad");
