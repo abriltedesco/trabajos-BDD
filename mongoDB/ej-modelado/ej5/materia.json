@@ -1,0 +1,27 @@
+[{
+  "nombre": "base de datos",
+  "codigo": 1,
+  "horas_semanales": 4,
+  "profesores":
+  [{
+    "nombre": "magali",
+    "apellido": "cristobo",
+    "email": "magaa@email.com"
+  }]
+},
+{
+  "nombre": "laboratorio",
+  "codigo": 2,
+  "horas_semanales": 7,
+  "profesores":
+  [{
+    "nombre": "martin",
+    "apellido": "barbieri",
+    "email": "barbieri@email.com"
+  },
+  {
+    "nombre": "franco",
+    "apellido": "callipo",
+    "email": "callipo@email.com"
+  }]
+}]

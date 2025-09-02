@@ -1,0 +1,24 @@
+[{
+  "nombre": "paciente1",
+  "apellido": "apellido1",
+  "dni": 12345678, 
+  "fechaNacimiento": "1990-01-01",
+  "telefono": 1234567890,
+  "historiaClinica": 1
+},
+{
+    "nombre": "paciente2",
+    "apellido": "apellido2",
+    "dni": 87654321, 
+    "fechaNacimiento": "1985-05-15",
+    "telefono": 9876543210,
+    "historiaClinica": 2
+},
+{
+    "nombre": "paciente3",
+    "apellido": "apellido3",
+    "dni": 11223344, 
+    "fechaNacimiento": "2000-12-31",
+    "telefono": 5556667777,
+    "historiaClinica": 3
+}]
