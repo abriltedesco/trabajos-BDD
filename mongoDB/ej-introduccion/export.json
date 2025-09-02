@@ -1,0 +1,177 @@
+[{
+  "_id": {
+    "$oid": "689df89db118c11c96baa8b9"
+  },
+  "nombre": "nombresito"
+},{
+  "_id": 1,
+  "nombre": "Juan",
+  "apellido": "Pérez",
+  "edad": 28,
+  "mail": "juan.perez@example.com",
+  "compras": [
+    {
+      "id_compra": 1,
+      "monto": 120.5,
+      "productos": [
+        "laptop",
+        "mouse",
+        "teclado"
+      ]
+    },
+    {
+      "id_compra": 2,
+      "monto": 15,
+      "productos": [
+        "cuaderno"
+      ]
+    },
+    {
+      "id_compra": 3,
+      "monto": 200,
+      "productos": [
+        "celular",
+        "funda",
+        "cargador",
+        "auriculares"
+      ]
+    }
+  ]
+},{
+  "_id": 2,
+  "nombre": "María",
+  "apellido": "Gómez",
+  "edad": 22,
+  "mail": "maria.gomez@example.com",
+  "compras": [
+    {
+      "id_compra": 4,
+      "monto": 300,
+      "productos": [
+        "televisor",
+        "soporte",
+        "hdmi",
+        "control remoto"
+      ]
+    },
+    {
+      "id_compra": 5,
+      "monto": 25.5,
+      "productos": [
+        "libro",
+        "agenda"
+      ]
+    },
+    {
+      "id_compra": 14,
+      "monto": 1000,
+      "productos": [
+        "pan",
+        "queso",
+        "jamon"
+      ]
+    }
+  ]
+},{
+  "_id": 3,
+  "nombre": "Lucas",
+  "apellido": "Martínez",
+  "edad": 35,
+  "mail": "lucas.m@gmail.com",
+  "compras": [
+    {
+      "id_compra": 6,
+      "monto": 50,
+      "productos": [
+        "mousepad"
+      ]
+    },
+    {
+      "id_compra": 7,
+      "monto": 90,
+      "productos": [
+        "cafetera",
+        "tazas",
+        "filtros",
+        "azúcar",
+        "café",
+        "leche"
+      ]
+    }
+  ]
+},{
+  "_id": 4,
+  "nombre": "Sofía",
+  "apellido": "Fernández",
+  "edad": 40,
+  "mail": "sofia.fernandez@example.com",
+  "compras": [
+    {
+      "id_compra": 8,
+      "monto": 500,
+      "productos": [
+        "heladera",
+        "freezer",
+        "organizador",
+        "luz LED",
+        "termostato",
+        "filtro de agua"
+      ]
+    }
+  ]
+},{
+  "_id": 5,
+  "nombre": "Lisa",
+  "apellido": "Mendes",
+  "edad": 25,
+  "mail": "lisa.mendes@gmail.com",
+  "compras": [
+    {
+      "id_compra": 9,
+      "monto": 555,
+      "productos": [
+        "cafe",
+        "leche",
+        "edulcorante"
+      ]
+    },
+    {
+      "id_compra": 10,
+      "monto": 765.14,
+      "productos": [
+        "carne",
+        "lechuga"
+      ]
+    }
+  ]
+},{
+  "_id": 6,
+  "nombre": "Kiara",
+  "apellido": "Sanchez",
+  "edad": 27,
+  "mail": "sanchezki@gmail.com",
+  "compras": [
+    {
+      "id_compra": 11,
+      "monto": 2048.5,
+      "productos": [
+        "helado",
+        "dulce de leche"
+      ]
+    },
+    {
+      "id_compra": 12,
+      "monto": 45.14,
+      "productos": [
+        "chicles"
+      ]
+    },
+    {
+      "id_compra": 13,
+      "monto": 4987,
+      "productos": [
+        "mouse"
+      ]
+    }
+  ]
+}]

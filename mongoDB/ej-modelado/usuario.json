@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "68b041e6785d087ec696c545"
+  },
+  "id": 1,
+  "nombre": "nombre",
+  "apellido": "apellido",
+  "email": "email@mail.com",
+  "clave": "clave",
+  "direccion": [
+    {
+      "id": 1,
+      "calle": "calle1",
+      "ciudad": "ciudad2",
+      "provincia": "provincia",
+      "codPostal:": 1111
+    },
+    {
+      "id": 2,
+      "calle": "calle2",
+      "ciudad": "ciudad2",
+      "provincia": "provincia",
+      "codPostal:": 1111
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "68b041e6785d087ec696c546"
+  },
+  "id": 2,
+  "nombre": "nombre",
+  "apellido": "apellido",
+  "email": "email@mail.com",
+  "clave": "clave",
+  "direccion": [
+    {
+      "id": 3,
+      "calle": "calle3",
+      "ciudad": "ciudad2",
+      "provincia": "provincia",
+      "codPostal:": 1111
+    },
+    {
+      "id": 4,
+      "calle": "calle4",
+      "ciudad": "ciudad3",
+      "provincia": "provincia2",
+      "codPostal:": 1112
+    }
+  ]
+}]

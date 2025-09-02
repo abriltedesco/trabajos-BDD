@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "68b03f61785d087ec696c541"
+  },
+  "id": 1,
+  "nombre": "Juan",
+  "apellido": "Pérez",
+  "edad": 30,
+  "email": "juanperez@gmail.com",
+  "puesto": "Desarrollador",
+  "carnet": {
+    "id": 1,
+    "numDeSerie": "AAA1111",
+    "fechaEmision": "2023-01-15",
+    "fechaVencimiento": "2026-01-15"
+  }
+},{
+  "_id": {
+    "$oid": "68b03f61785d087ec696c542"
+  },
+  "id": 2,
+  "nombre": "Marta",
+  "apellido": "Lopez",
+  "edad": 29,
+  "email": "loopezm@gmail.com",
+  "puesto": "Analista",
+  "carnet": {
+    "id": 2,
+    "numDeSerie": "AAA1112",
+    "fechaEmision": "2021-01-17",
+    "fechaVencimiento": "2024-03-15"
+  }
+}]
