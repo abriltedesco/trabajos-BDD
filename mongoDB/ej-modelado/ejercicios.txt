@@ -1,3 +1,0 @@
-1 - relacion 1:1 de empleado a carnet
-2 - relacion 1:N de cliente a direccion
-3 - relacion

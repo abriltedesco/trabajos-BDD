@@ -13,14 +13,14 @@
       "calle": "calle1",
       "ciudad": "ciudad2",
       "provincia": "provincia",
-      "codPostal:": 1111
+      "codPostal": 1111
     },
     {
       "id": 2,
       "calle": "calle2",
       "ciudad": "ciudad2",
       "provincia": "provincia",
-      "codPostal:": 1111
+      "codPostal": 1111
     }
   ]
 },{
@@ -38,14 +38,14 @@
       "calle": "calle3",
       "ciudad": "ciudad2",
       "provincia": "provincia",
-      "codPostal:": 1111
+      "codPostal": 1111
     },
     {
       "id": 4,
       "calle": "calle4",
       "ciudad": "ciudad3",
       "provincia": "provincia2",
-      "codPostal:": 1112
+      "codPostal": 1112
     }
   ]
 }]

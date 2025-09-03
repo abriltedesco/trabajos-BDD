@@ -1,0 +1,100 @@
+
+[{
+  "id": 1,
+  "fecha":"2025-25-08",
+  "productos":
+  [
+  {
+    "idProd": 2,
+    "cantidad":1,
+    "precioUnit": 1500  
+  },
+  {
+    "idProd": 3,
+    "cantidad": 5,
+    "precioUnit": 3500 
+  },
+  {
+    "idProd": 1,
+    "cantidad": 1,
+    "precioUnit": 2000
+  }],
+  "montoTotal": 1000,
+  "idUsuario": 1
+},
+{
+  "id": 2,
+  "fecha":"2025-27-08",
+  "productos":
+  [{
+    "idProd": 2,
+    "cantidad": 5,
+    "precioUnit": 1500  
+  },
+  {
+    "idProd": 3,
+    "cantidad": 2,
+    "precioUnit": 3500 
+  }],
+  "montoTotal": 1020,
+  "idUsuario": 2
+},
+{
+  "id": 3,
+  "fecha":"2025-26-08",
+  "productos":[{
+    "idProd": 1,
+    "cantidad": 1,
+    "precioUnit": 5  
+  },
+  {
+    "idProd": 2,
+    "cantidad":1,
+    "precioUnit": 10  
+  }],
+  "montoTotal": 9000,
+  "idUsuario": 2
+},
+{
+  "id": 4,
+  "fecha":"2025-28-08",
+  "productos":[{
+    "idProd": 1,
+    "cantidad": 2,
+    "precioUnit": 5  
+  },
+  {
+    "idProd": 2,
+    "cantidad":1,
+    "precioUnit": 10  
+  },
+  {
+    "idProd": 3,
+    "cantidad": 5,
+    "precioUnit": 50  
+  }],
+  "montoTotal": 290,
+  "idUsuario": 2
+},
+{
+  "id":5,
+  "fecha":"2025-26-08",
+  "productos": 
+  [ {
+    "idProd": 2,
+    "cantidad":1,
+    "precioUnit": 1500  
+  },
+  {
+    "idProd": 3,
+    "cantidad": 5,
+    "precioUnit": 3500 
+  },
+  {
+    "idProd": 1,
+    "cantidad": 1,
+    "precioUnit": 2000
+  }],
+  "montoTotal": 9000,
+  "idUsuario": 1
+}]
