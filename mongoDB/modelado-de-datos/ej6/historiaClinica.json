@@ -1,7 +1,7 @@
 [{
     "numeroHistoria": 1,
     "fechaInicio": "2023-01-15",
-    "observaciones": "Paciente con antecedentes de hipertensión",
+    "observacionGral": "Paciente con antecedentes de hipertensión",
     "registroMedico": [
         {
             "fecha": "2023-01-20",
@@ -20,7 +20,7 @@
 {
     "numeroHistoria": 2,
     "fechaInicio": "2022-11-10",
-    "observaciones": "Paciente con alergias estacionales",
+    "observacionGral": "Paciente con alergias estacionales",
     "registroMedico": [
         {
             "fecha": "2022-11-15",
@@ -39,7 +39,7 @@
 {
     "numeroHistoria": 3,
     "fechaInicio": "2023-03-01",
-    "observaciones": "Paciente con fractura de brazo derecho",
+    "observacionGral": "Paciente con fractura de brazo derecho",
     "registroMedico": [
         {
             "fecha": "2023-03-02",
