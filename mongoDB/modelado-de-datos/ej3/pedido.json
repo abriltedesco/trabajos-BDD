@@ -1,6 +1,7 @@
 
 [{
   "id": 1,
+  "idUsuario": 1,
   "fecha":"2025-25-08",
   "productos":
   [
@@ -24,6 +25,7 @@
 },
 {
   "id": 2,
+  "idUsuario": 1,
   "fecha":"2025-27-08",
   "productos":
   [{
@@ -78,6 +80,7 @@
 },
 {
   "id":5,
+  "idUsuario": 2,
   "fecha":"2025-26-08",
   "productos": 
   [ {
