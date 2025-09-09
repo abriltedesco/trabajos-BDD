@@ -18,7 +18,7 @@ ese valor en la fecha actual.
 )
 
 6. Mostrar el nombre de los hoteles que cuentan con alguna promoción del 10%.
--- 
+
 
 7. Mostrar todos los hoteles que tengan descuento para jubilados.
 -- db.promocion.find(
@@ -73,7 +73,7 @@ promociones.
 tres promociones.
 
 
-17.Explicar para qué sirve el operador de $elemMatch y dar un ejemplo.
+17. Explicar para qué sirve el operador de $elemMatch y dar un ejemplo.
 
 
 18.Mostrar todos los hoteles que tengan dentro de “números útiles” el teléfono de
@@ -91,3 +91,15 @@ campo.
 21.Utilizando el método updateMany() dar un ejemplo de cada uno de los
 siguientes operadores: $inc, $max, $mul, $rename, $unset, $pop, $pull y $push
 
+
+22.Indicar el comando utilizado para exportar los datos de una collection y generar
+un documento json. Lo mismo para importar los datos desde un documento json
+y generar una collection dentro de la base de datos.
+
+
+
+
+-------------- ejercicios no terminados ---------------
+
+6. db.promocion.find( {"porcentaje": 10}, {"idHotel":1} ) 
+// como agarrar nombre? "join" entre promocion y hotel
