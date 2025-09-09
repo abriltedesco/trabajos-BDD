@@ -1,0 +1,7 @@
+db.servicio.insertMany([
+    { "id": 2, "nombre": "pet-friendly"},
+    { "id": 3, "nombre": "pileta"},
+    { "id": 4, "nombre": "restaurante" },
+    { "id": 5, "nombre": "gimnasio" },
+    { "id": 6, "nombre": "wifi" }
+])

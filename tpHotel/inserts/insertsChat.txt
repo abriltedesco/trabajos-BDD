@@ -1,0 +1,97 @@
+db.chat.insertMany([
+  {
+    "id": 2,
+    "idHotel": 2,
+    "enviadosPorUser": [
+      {
+        "id": 4,
+        "fecha": "2025-09-01 09:15:22",
+        "mensaje": "¿Tienen disponibilidad para el fin de semana?"
+      }
+    ],
+    "enviadosPorHotel": [
+      {
+        "id": 5,
+        "fecha": "2025-09-01 09:20:10",
+        "mensaje": "Sí, contamos con habitaciones disponibles."
+      },
+      {
+        "id": 6,
+        "fecha": "2025-09-01 09:21:30",
+        "mensaje": "¿Desea que le reserve una?"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "idHotel": 3,
+    "enviadosPorUser": [
+      {
+        "id": 7,
+        "fecha": "2025-09-02 12:00:00",
+        "mensaje": "Hola, ¿aceptan mascotas pequeñas?"
+      }
+    ],
+    "enviadosPorHotel": [
+      {
+        "id": 8,
+        "fecha": "2025-09-02 12:05:45",
+        "mensaje": "Sí, aceptamos mascotas de hasta 10kg sin cargo adicional."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "idHotel": 4,
+    "enviadosPorUser": [
+      {
+        "id": 9,
+        "fecha": "2025-09-03 16:40:00",
+        "mensaje": "¿El desayuno está incluido en la tarifa?"
+      }
+    ],
+    "enviadosPorHotel": [
+      {
+        "id": 10,
+        "fecha": "2025-09-03 16:41:15",
+        "mensaje": "Sí, el desayuno buffet está incluido en todas las reservas."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "idHotel": 2,
+    "enviadosPorUser": [
+      {
+        "id": 11,
+        "fecha": "2024-09-04 10:00:00",
+        "mensaje": "¿Tienen descuento para estudiantes?"
+      }
+    ],
+    "enviadosPorHotel": [
+      {
+        "id": 12,
+        "fecha": "2024-09-04 10:05:00",
+        "mensaje": "Sí, ofrecemos 15% de descuento presentando carnet."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "idHotel": 3,
+    "enviadosPorUser": [
+      {
+        "id": 13,
+        "fecha": "2025-09-03 14:20:00",
+        "mensaje": "¿El hotel tiene wifi gratuito?"
+      }
+    ],
+    "enviadosPorHotel": [
+      {
+        "id": 14,
+        "fecha": "2025-09-03 14:22:00",
+        "mensaje": "Sí, está incluido en todas las habitaciones."
+      }
+    ]
+  }
+])

@@ -1,0 +1,93 @@
+1 y 2 en carpeta "INSERTS"
+3. Mostrar la cantidad de hoteles que hay insertados.
+-- db.hotel.count()
+
+4. Teniendo en cuenta que en la pantalla principal se puede filtrar por hoteles que
+tienen SPA, que son pet-friendly y que poseen pileta y, además, se puede
+ordenar por nombre de hotel (ascendente y descendentemente), escribir las
+consultas necesarias para poder traer esa información.
+-- db.hotel.find( 
+    { "servicios.idServicio": { $in : [1, 2, 3] } }, { nombre: 1 } 
+)
+
+5. Agregar un campo “ultima_actualizacion” con la fecha actual a todos los
+documentos de hoteles. Siempre que se actualice el documento se debe setear
+ese valor en la fecha actual.
+-- db.hotel.updateMany(
+    {}, { $currentDate: { ultima_actualizacion: true } }
+)
+
+6. Mostrar el nombre de los hoteles que cuentan con alguna promoción del 10%.
+-- 
+
+7. Mostrar todos los hoteles que tengan descuento para jubilados.
+-- db.promocion.find(
+    { "nombre": { $regex: "jubilado", $options: "i" } },  { "idHotel": 1 }
+)
+
+// el regex es para q busque q tenga esa palabra ya q puede ser "cupon de jubilado/s" 
+y el options i para q no pase nada si es min o maysucula
+
+8. Actualizar los hoteles que tengan el número de la Policía en sus números útiles
+por el siguiente número: 0800-911.
+-- db.numerosUtiles.insertOne({} , { $set :{"numeroUtil": 0800911} })
+
+9. Mostrar el nombre, dirección y teléfono de los hoteles que tengan como punto
+de interés el museo MALBA.
+-- db.puntoInteres.find( {"nombre": "MALBA"}, {"_id": 0, "id":1}) // nos devuelve q el id es 2
+-- db.hotel.find( {"puntosInteres":2} , {"nombre": 1, "direccion": 1, "telefono": 1})
+
+
+10.Agregar una promoción que inicie el 2025-09-10 y termine el 2025-10-10.
+Elegir un hotel al azar.
+-- db.promocion.insertOne(
+    {
+       "id": 7,
+       "nombre": "Descuento para jubilados y estudiantes",
+       "porcentaje": 10,
+       "fechaInicio":"2025-09-10",
+       "fechaFin": "2025-10-10", 
+       "idHotel" : 3
+    }
+)
+
+11.Mostrar el nombre del hotel, sus servicios y comodidades para aquel que posea
+el máximo descuento.
+
+
+12.Mostrar los hoteles que tengan descuento para jubilados o para estudiantes.
+
+
+13.Mostrar los hoteles que tengan spa, pileta y además alguna promoción vigente
+mayor al 20%.
+
+
+14.Mostrar todos los hoteles (nombre, dirección y teléfono) que no tengan
+promociones.
+
+
+15.Mostrar los mensajes recibidos del hotel con id 2.
+
+
+16.Mostrar todos los hoteles (nombre, dirección y teléfono) que tienen, al menos,
+tres promociones.
+
+
+17.Explicar para qué sirve el operador de $elemMatch y dar un ejemplo.
+
+
+18.Mostrar todos los hoteles que tengan dentro de “números útiles” el teléfono de
+emergencias médicas.
+
+
+19.Mostrar los hoteles con sus promociones vigentes al día de hoy.
+
+
+20.Borrar todos los documentos de la collection que no ofrezcan comodidades.
+Tener en cuenta tanto los casos en los que existe como en los que no existe el
+campo.
+
+
+21.Utilizando el método updateMany() dar un ejemplo de cada uno de los
+siguientes operadores: $inc, $max, $mul, $rename, $unset, $pop, $pull y $push
+

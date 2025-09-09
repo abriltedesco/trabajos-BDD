@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "68b986b4b2a063db96d48b7e"
+  },
+  "id": 1,
+  "nombre": "spa"
+},{
+  "_id": {
+    "$oid": "68b9a1207065a2e260da7095"
+  },
+  "id": 2,
+  "nombre": "pet-friendly"
+},{
+  "_id": {
+    "$oid": "68b9a1207065a2e260da7096"
+  },
+  "id": 3,
+  "nombre": "pileta"
+},{
+  "_id": {
+    "$oid": "68b9a1207065a2e260da7097"
+  },
+  "id": 4,
+  "nombre": "restaurante"
+},{
+  "_id": {
+    "$oid": "68b9a1207065a2e260da7098"
+  },
+  "id": 5,
+  "nombre": "gimnasio"
+},{
+  "_id": {
+    "$oid": "68b9a1207065a2e260da7099"
+  },
+  "id": 6,
+  "nombre": "wifi"
+}]

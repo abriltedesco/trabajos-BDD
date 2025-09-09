@@ -1,0 +1,21 @@
+db.usuario.insertMany(
+[{
+  "id": 1,
+  "email": "user@gmail.com",
+  "idChats": [1]
+},
+{
+  "id": 2,
+  "email": "usersss@gmail.com",
+  "idChats": [2]
+},
+{
+  "id": 3,
+  "email": "viajera.estudiante@gmail.com",
+  "idChats": [5]
+},
+{
+  "id": 4,
+  "email": "pregunton@gmail.com",
+  "idChats": [6]
+}])

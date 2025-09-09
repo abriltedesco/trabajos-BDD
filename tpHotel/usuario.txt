@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "68b98a6eb2a063db96d48b88"
+  },
+  "id": 1,
+  "email": "user@gmail.com",
+  "idChats": [
+    1
+  ]
+},{
+  "_id": {
+    "$oid": "68b9a1507065a2e260da709e"
+  },
+  "id": 2,
+  "email": "usersss@gmail.com",
+  "idChats": [
+    2
+  ]
+},{
+  "_id": {
+    "$oid": "68b9a1507065a2e260da709f"
+  },
+  "id": 3,
+  "email": "viajera.estudiante@gmail.com",
+  "idChats": [
+    5
+  ]
+},{
+  "_id": {
+    "$oid": "68b9a1507065a2e260da70a0"
+  },
+  "id": 4,
+  "email": "pregunton@gmail.com",
+  "idChats": [
+    6
+  ]
+}]

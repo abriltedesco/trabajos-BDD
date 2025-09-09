@@ -1,0 +1,37 @@
+db.numerosUtiles.insertOne({"_id":2 , "ciudad":"Puerto Madryn", "numeroUtil": [ {"nombre": "SAME", "telefono": 107}, {"nombre": "Bomberos", "telefono": 100} ] })
+
+
+db.numerosUtiles.insertMany([
+  {
+    "_id": 3,
+    "ciudad": "Mar del Plata",
+    "numeroUtil": [
+      { "nombre": "Defensa Civil", "telefono": 103 },
+      { "nombre": "Linea de atención al Ciudadano", "telefono": 147 }
+    ]
+  },
+  {
+    "_id": 4,
+    "ciudad": "Villa Gessel",
+    "numeroUtil": [
+      { "nombre": "Defensa Civil", "telefono": 103 },
+      { "nombre": "Linea de atención al Ciudadano", "telefono": 147 }
+    ]
+  },
+  {
+    "_id": 5,
+    "ciudad": "Buenos Aires",
+    "numeroUtil": [
+      { "nombre": "Policía", "telefono": 911 },
+      { "nombre": "Emergencias Médicas", "telefono": 107 }
+    ]
+  },
+  {
+    "_id": 6,
+    "ciudad": "Bariloche",
+    "numeroUtil": [
+      { "nombre": "Defensa Civil", "telefono": 103 },
+      { "nombre": "Bomberos", "telefono": 100 }
+    ]
+  }
+])

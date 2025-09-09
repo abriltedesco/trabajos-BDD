@@ -1,0 +1,113 @@
+[{
+  "_id": {
+    "$oid": "68b9a1987065a2e260da70a1"
+  },
+  "id": 1,
+  "nombre": "Bellas Artes",
+  "direccion": "Av. del Libertador 1473",
+  "ciudad": "Buenos Aires",
+  "tipo": "museo",
+  "telefono": "111111",
+  "horario": "10hs a 20hs",
+  "diasCerrados": [
+    "domingo",
+    "lunes"
+  ],
+  "idHotelesCercanos": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ]
+},{
+  "_id": {
+    "$oid": "68b9a1987065a2e260da70a2"
+  },
+  "id": 2,
+  "nombre": "MALBA",
+  "direccion": "Av. del Libertador 1473",
+  "ciudad": "Buenos Aires",
+  "tipo": "museo",
+  "telefono": "22222",
+  "horario": "8hs a 20hs",
+  "diasCerrados": [
+    "domingo",
+    "miercoles"
+  ],
+  "idHotelesCercanos": [
+    2,
+    4,
+    5
+  ]
+},{
+  "_id": {
+    "$oid": "68b9a1987065a2e260da70a3"
+  },
+  "id": 3,
+  "nombre": "Plaza de mayo",
+  "direccion": "Av. Hipólito Yrigoyen",
+  "ciudad": "Buenos Aires",
+  "tipo": "Plaza",
+  "telefono": "123",
+  "horario": "todo el dia",
+  "diasCerrados": [
+    " "
+  ],
+  "idHotelesCercanos": [
+    3,
+    5
+  ]
+},{
+  "_id": {
+    "$oid": "68b9a1987065a2e260da70a4"
+  },
+  "id": 4,
+  "nombre": "Teatro Colón",
+  "direccion": "Cerrito 68",
+  "ciudad": "Buenos Aires",
+  "tipo": "Teatro",
+  "telefono": "15555",
+  "horario": "12hs a 23hs",
+  "diasCerrados": [
+    "lunes"
+  ],
+  "idHotelesCercanos": [
+    3,
+    5
+  ]
+},{
+  "_id": {
+    "$oid": "68b9a1987065a2e260da70a5"
+  },
+  "id": 5,
+  "nombre": "Lago Nahuel Huapi",
+  "direccion": "Parque Nacional Nahuel Huapi",
+  "ciudad": "Bariloche",
+  "tipo": "lago",
+  "telefono": "-",
+  "horario": "todo el día",
+  "diasCerrados": [],
+  "idHotelesCercanos": [
+    2,
+    3
+  ]
+},{
+  "_id": {
+    "$oid": "68b9a1987065a2e260da70a6"
+  },
+  "id": 6,
+  "nombre": "Aquarium",
+  "direccion": "Av. Colón 456",
+  "ciudad": "Mar del Plata",
+  "tipo": "acuario",
+  "telefono": "45678",
+  "horario": "9hs a 19hs",
+  "diasCerrados": [
+    "martes"
+  ],
+  "idHotelesCercanos": [
+    2
+  ]
+}]

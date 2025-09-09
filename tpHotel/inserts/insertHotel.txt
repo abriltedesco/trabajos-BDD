@@ -1,0 +1,56 @@
+db.hotel.insertMany([
+{
+  "id": 1,
+  "nombre": "four seasons",
+  "direccion": "Posadas 1086 88",
+  "telefono": 1111,
+  "ciudad": "Buenos Aires",
+  "servicios": [
+    { "numInterno": 100, "idServicio": 1},
+    { "numInterno": 101, "idServicio": 2},
+    { "idServicio": 3 }
+  ],
+  "puntosInteres": [ 1 ],
+  "ciudadNumUtiles": "Buenos Aires"
+},
+  {
+    "id": 2,
+    "nombre": "Hotel Costa Azul",
+    "direccion": "Av. Costanera 1234",
+    "telefono": 2222,
+    "ciudad": "Mar del Plata",
+    "servicios": [
+      { "numInterno": 85, "idServicio": 4 },
+      { "numInterno": 77, "idServicio": 5 },
+      { "idServicio": 6 }
+    ],
+    "puntosInteres": [1, 3],
+    "ciudadNumUtiles": "Mar del Plata"
+  },
+  {
+    "id": 3,
+    "nombre": "Bahia Resort",
+    "direccion": "9 de Julio 789",
+    "telefono": 3333,
+    "ciudad": "Puerto Madryn",
+    "servicios": [
+      { "numInterno": 105, "idServicio": 4 },
+      { "idServicio": 6 }
+    ],
+    "puntosInteres": [],
+    "ciudadNumUtiles": "Puerto Madryn"
+  },
+  {
+    "id": 4,
+    "nombre": "Hostel del Bosque",
+    "direccion": "Calle Los Pinos 321",
+    "telefono": 4444,
+    "ciudad": "Villa Gessel",
+    "servicios": [
+      { "numInterno": 100, "idServicio": 5 },
+      { "idServicio": 6 }
+    ],
+    "puntosInteres": [2, 4],
+    "ciudadNumUtiles": "Villa Gessel"
+  }
+])
