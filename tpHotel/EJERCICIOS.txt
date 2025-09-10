@@ -18,7 +18,11 @@ ese valor en la fecha actual.
 )
 
 6. Mostrar el nombre de los hoteles que cuentan con alguna promoción del 10%.
-
+-- en este si o si tenemos que hacer un "join" como no sabemos hacerlo lo pensamos de esta forma: 
+db.promocion.find(
+    {"porcentaje": 10}, {"_id":0, "idHotel": 1}
+)  --> esto trae todos los ids
+db.hotel.find({ id: { $in: [lista_de_ids_encontrados] } }, { nombre: 1, _id: 0 })
 
 7. Mostrar todos los hoteles que tengan descuento para jubilados.
 -- db.promocion.find(
@@ -56,7 +60,7 @@ el máximo descuento.
 
 
 12.Mostrar los hoteles que tengan descuento para jubilados o para estudiantes.
-
+-- similar a 7 pero tambien agregar estudiantes 
 
 13.Mostrar los hoteles que tengan spa, pileta y además alguna promoción vigente
 mayor al 20%.
@@ -86,20 +90,12 @@ emergencias médicas.
 20.Borrar todos los documentos de la collection que no ofrezcan comodidades.
 Tener en cuenta tanto los casos en los que existe como en los que no existe el
 campo.
-
+-- 
 
 21.Utilizando el método updateMany() dar un ejemplo de cada uno de los
 siguientes operadores: $inc, $max, $mul, $rename, $unset, $pop, $pull y $push
-
 
 22.Indicar el comando utilizado para exportar los datos de una collection y generar
 un documento json. Lo mismo para importar los datos desde un documento json
 y generar una collection dentro de la base de datos.
 
-
-
-
--------------- ejercicios no terminados ---------------
-
-6. db.promocion.find( {"porcentaje": 10}, {"idHotel":1} ) 
-// como agarrar nombre? "join" entre promocion y hotel
