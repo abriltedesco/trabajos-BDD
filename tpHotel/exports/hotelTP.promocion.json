@@ -1,0 +1,77 @@
+[{
+  "_id": {
+    "$oid": "68b97f9eb2a063db96d48b75"
+  },
+  "id": "68b97ed9b2a063db96d48b74",
+  "nombre": "cupón SPA",
+  "porcentaje": 25,
+  "fechaInicio": "2025-09-06",
+  "fechaFin": "2025-12-20",
+  "idHotel": 1
+},
+{
+  "_id": {
+    "$oid": "68bf68d9c38598d53543b6d4"
+  },
+  "id": 2,
+  "nombre": "cupón jubilados",
+  "porcentaje": 10,
+  "fechaInicio": "2025-08-06",
+  "fechaFin": "2025-10-20",
+  "idHotel": 1
+},
+{
+  "_id": {
+    "$oid": "68bf68d9c38598d53543b6d5"
+  },
+  "id": 3,
+  "nombre": "Descuento Estudiantes",
+  "porcentaje": 15,
+  "fechaInicio": "2024-09-01",
+  "fechaFin": "2024-12-31",
+  "idHotel": 2
+},
+{
+  "_id": {
+    "$oid": "68bf68d9c38598d53543b6d6"
+  },
+  "id": 4,
+  "nombre": "Promo Verano",
+  "porcentaje": 20,
+  "fechaInicio": "2025-12-01",
+  "fechaFin": "2026-02-28",
+  "idHotel": 3
+},
+{
+  "_id": {
+    "$oid": "68bf68d9c38598d53543b6d7"
+  },
+  "id": 5,
+  "nombre": "Descuento Estudiantes",
+  "porcentaje": 10,
+  "fechaInicio": "2025-05-01",
+  "fechaFin": "2025-07-30",
+  "idHotel": 4
+},
+{
+  "_id": {
+    "$oid": "68bf68d9c38598d53543b6d8"
+  },
+  "id": 6,
+  "nombre": "Descuento Jubilados",
+  "porcentaje": 15,
+  "fechaInicio": "2025-05-01",
+  "fechaFin": "2025-07-30",
+  "idHotel": 4
+},
+{
+  "_id": {
+    "$oid": "68bf743f33796abaaa555fa2"
+  },
+  "id": 7,
+  "nombre": "Descuento para jubilados y estudiantes",
+  "porcentaje": 10,
+  "fechaInicio": "2025-09-10",
+  "fechaFin": "2025-10-10",
+  "idHotel": 3
+}]

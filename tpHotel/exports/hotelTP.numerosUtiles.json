@@ -1,0 +1,62 @@
+[{
+  "_id": {
+    "$oid": "68b98824b2a063db96d48b81"
+  },
+  "ciudad": "Buenos Aires",
+  "numeroUtil": [
+    {
+      "nombre": "SAME",
+      "telefono": 107
+    },
+    {
+      "nombre": "defensa",
+      "telefono": 103
+    },
+    {
+      "nombre": "servicios",
+      "telefono": 147
+    }
+  ]
+},
+{
+  "_id": 2,
+  "ciudad": "Puerto Madryn",
+  "numeroUtil": [
+    {
+      "nombre": "SAME",
+      "telefono": 107
+    },
+    {
+      "nombre": "Bomberos",
+      "telefono": 100
+    }
+  ]
+},
+{
+  "_id": 3,
+  "ciudad": "Mar del Plata",
+  "numeroUtil": [
+    {
+      "nombre": "Defensa Civil",
+      "telefono": 103
+    },
+    {
+      "nombre": "Linea de atención al Ciudadano",
+      "telefono": 147
+    }
+  ]
+},
+{
+  "_id": 4,
+  "ciudad": "Villa Gessel",
+  "numeroUtil": [
+    {
+      "nombre": "Defensa Civil",
+      "telefono": 103
+    },
+    {
+      "nombre": "Linea de atención al Ciudadano",
+      "telefono": 147
+    }
+  ]
+}]
