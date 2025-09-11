@@ -1,18 +1,4 @@
 db.hotel.insertMany([
-{
-  "id": 1,
-  "nombre": "four seasons",
-  "direccion": "Posadas 1086 88",
-  "telefono": 1111,
-  "ciudad": "Buenos Aires",
-  "servicios": [
-    { "numInterno": 100, "idServicio": 1},
-    { "numInterno": 101, "idServicio": 2},
-    { "idServicio": 3 }
-  ],
-  "puntosInteres": [ 1 ],
-  "ciudadNumUtiles": "Buenos Aires"
-},
   {
     "id": 2,
     "nombre": "Hotel Costa Azul",
@@ -23,6 +9,15 @@ db.hotel.insertMany([
       { "numInterno": 85, "idServicio": 4 },
       { "numInterno": 77, "idServicio": 5 },
       { "idServicio": 6 }
+    ],
+    "promociones": [
+      {
+        "id": 3,
+        "nombre": "Descuento Estudiantes",
+        "porcentaje": 15,
+        "fechaInicio": "2024-09-01",
+        "fechaFin": "2024-12-31"
+      }
     ],
     "puntosInteres": [1, 3],
     "ciudadNumUtiles": "Mar del Plata"
@@ -37,6 +32,15 @@ db.hotel.insertMany([
       { "numInterno": 105, "idServicio": 4 },
       { "idServicio": 6 }
     ],
+    "promociones": [    
+      {
+        "id": 4,
+        "nombre": "Promo Verano",
+        "porcentaje": 20,
+        "fechaInicio": "2025-12-01",
+        "fechaFin": "2026-02-28"
+      }
+    ],
     "puntosInteres": [],
     "ciudadNumUtiles": "Puerto Madryn"
   },
@@ -49,6 +53,22 @@ db.hotel.insertMany([
     "servicios": [
       { "numInterno": 100, "idServicio": 5 },
       { "idServicio": 6 }
+    ],
+    "promociones": [
+      {
+        "id": 5,
+        "nombre": "Descuento Estudiantes",
+        "porcentaje": 10,
+        "fechaInicio": "2025-05-01",
+        "fechaFin": "2025-07-30"
+      },
+      {
+        "id": 6,
+        "nombre": "Descuento Jubilados",
+        "porcentaje": 15,
+        "fechaInicio": "2025-05-01",
+        "fechaFin": "2025-07-30"
+      }
     ],
     "puntosInteres": [2, 4],
     "ciudadNumUtiles": "Villa Gessel"

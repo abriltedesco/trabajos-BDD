@@ -19,17 +19,16 @@ ese valor en la fecha actual.
 
 6. Mostrar el nombre de los hoteles que cuentan con alguna promoción del 10%.
 -- en este si o si tenemos que hacer un "join" como no sabemos hacerlo lo pensamos de esta forma: 
-db.promocion.find(
-    {"porcentaje": 10}, {"_id":0, "idHotel": 1}
-)  --> esto trae todos los ids
-db.hotel.find({ id: { $in: [lista_de_ids_encontrados] } }, { nombre: 1, _id: 0 })
-
-7. Mostrar todos los hoteles que tengan descuento para jubilados.
--- db.promocion.find(
-    { "nombre": { $regex: "jubilado", $options: "i" } },  { "idHotel": 1 }
+db.hotel.find(
+    {"promociones.porcentaje" : 10}, {"_id":0, "nombre": 1}
 )
 
-// el regex es para q busque q tenga esa palabra ya q puede ser "cupon de jubilado/s" 
+7. Mostrar todos los hoteles que tengan descuento para jubilados.
+-- db.hotel.find(
+    { "promociones.nombre": { $regex: "jubilados", $options: "i" } },  {"_id":0, "nombre": 1 }
+)
+
+// el regex es para q busque q tenga esa palabra ya q puede ser "cupon de jubilados" 
 y el options i para q no pase nada si es min o maysucula
 
 8. Actualizar los hoteles que tengan el número de la Policía en sus números útiles
@@ -44,58 +43,60 @@ de interés el museo MALBA.
 
 10.Agregar una promoción que inicie el 2025-09-10 y termine el 2025-10-10.
 Elegir un hotel al azar.
--- db.promocion.insertOne(
-    {
-       "id": 7,
-       "nombre": "Descuento para jubilados y estudiantes",
-       "porcentaje": 10,
-       "fechaInicio":"2025-09-10",
-       "fechaFin": "2025-10-10", 
-       "idHotel" : 3
-    }
+-- db.hotel.updateOne(
+  { "id": 3 }, 
+  { $push: { promociones:  {"id": 7, "nombre": "Descuento para jubilados y estudiantes", "porcentaje": 10, "fechaInicio": "2025-09-10", "fechaFin": "2025-10-10" }}}
 )
 
 11.Mostrar el nombre del hotel, sus servicios y comodidades para aquel que posea
 el máximo descuento.
-
+-- 
+db.hotel.aggregate([
+  { $unwind: "$promociones" }, // lee todos los elementos del array
+  { $sort: { "promociones.porcentaje": -1 } },
+  { $limit: 1 },
+  { $project: { "_id": 0, "nombre": 1, "servicios.id": 1} } // muestre los campos pedidos
+])
 
 12.Mostrar los hoteles que tengan descuento para jubilados o para estudiantes.
--- similar a 7 pero tambien agregar estudiantes 
+-- db.hotel.find(
+    { $or: [ {"promociones.nombre": { $regex: "jubilados", $options: "i" } }, {"promociones.nombre": { $regex: "estudiantes", $options: "i" } } ] },  
+    {"_id":0, "nombre": 1}
+)
 
-13.Mostrar los hoteles que tengan spa, pileta y además alguna promoción vigente
+13. Mostrar los hoteles que tengan spa, pileta y además alguna promoción vigente
 mayor al 20%.
 
 
-14.Mostrar todos los hoteles (nombre, dirección y teléfono) que no tengan
+14. Mostrar todos los hoteles (nombre, dirección y teléfono) que no tengan
 promociones.
 
 
-15.Mostrar los mensajes recibidos del hotel con id 2.
+15. Mostrar los mensajes recibidos del hotel con id 2.
 
 
-16.Mostrar todos los hoteles (nombre, dirección y teléfono) que tienen, al menos,
+16. Mostrar todos los hoteles (nombre, dirección y teléfono) que tienen, al menos,
 tres promociones.
 
 
 17. Explicar para qué sirve el operador de $elemMatch y dar un ejemplo.
 
 
-18.Mostrar todos los hoteles que tengan dentro de “números útiles” el teléfono de
+18. Mostrar todos los hoteles que tengan dentro de “números útiles” el teléfono de
 emergencias médicas.
 
 
-19.Mostrar los hoteles con sus promociones vigentes al día de hoy.
+19. Mostrar los hoteles con sus promociones vigentes al día de hoy.
 
 
-20.Borrar todos los documentos de la collection que no ofrezcan comodidades.
+20. Borrar todos los documentos de la collection que no ofrezcan comodidades.
 Tener en cuenta tanto los casos en los que existe como en los que no existe el
 campo.
--- 
 
-21.Utilizando el método updateMany() dar un ejemplo de cada uno de los
+21. Utilizando el método updateMany() dar un ejemplo de cada uno de los
 siguientes operadores: $inc, $max, $mul, $rename, $unset, $pop, $pull y $push
 
-22.Indicar el comando utilizado para exportar los datos de una collection y generar
+22. Indicar el comando utilizado para exportar los datos de una collection y generar
 un documento json. Lo mismo para importar los datos desde un documento json
 y generar una collection dentro de la base de datos.
-
+-- ESTE PROBEMOSLO EN CLASE !!!
