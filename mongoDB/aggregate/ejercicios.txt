@@ -1,0 +1,58 @@
+1 - Mostrar el promedio de edad de todos los clientes.
+db.cliente.aggregate({ $group: { "_id": null, promedioEdad:{$avg: "$edad"} } })
+
+2 - Mostrar el total de unidades que se ordenaron de cada producto en todas las compras.
+db.cliente.aggregate([
+    { $unwind:"$compras" },
+    { $unwind:"$compras.productos" },
+    { $group:{ _id: "$compras.productos.id",  cantTotal:{$sum:"$compras.productos.cantidad"} }  }
+])
+
+3 - Mostrar el total gastado por cada cliente.
+db.cliente.aggregate([
+    { $unwind: "$compras" },
+    { $unwind: "$compras.productos" },
+    { $group: {_id: "$dni", total: { $sum:{$multiply:["$compras.productos.cantidad", "$compras.productos.precio"]} }}}
+])
+
+4 - Mostrar los clientes que hicieron más de dos compras.
+db.cliente.aggregate([ 
+    { $project: { dni: 1, cantCompras: { $size: "$compras" } } }, { $match: { cantCompras: { $gt: 2 } } }
+])
+
+5 -  Mostrar el cliente que realizó más compras.
+db.cliente.aggregate([ 
+    { $project: { dni:1, cantCompras:{$size:"$compras"} } }, { $sort: {cantCompras:-1} }, { $limit: 1 }
+])
+
+6 -  Mostrar el promedio de unidades ordenadas por compra para todas las compras.
+db.cliente.aggregate([
+    { $unwind: "$compras" },
+    { $unwind: "$compras.productos" },
+    { $group: { _id: "$compras.id", total:{ $avg: {$sum:"$compras.productos.cantidad"} } }  }
+])
+
+7 -  Mostrar la cantidad de compras en la que se encuentra cada producto.
+db.cliente.aggregate([
+    { $unwind: "$compras" },
+    { $unwind: "$compras.productos" },
+    { $group: { _id:"$compras.productos.id", cantCompras:{$sum:1} } }
+])
+
+8 -- Mostrar el total (cant unidades) vendido el día de hoy.
+db.cliente.aggregate([
+    { $unwind: "$compras" },
+    { $match: {  $expr: { $eq:{"$compras.fecha", "$$NOW"} }  } } ,
+    { $unwind: "$compras.productos" },
+    { $group: { _id: null, total:{$sum:"$compras.productos.cantidad"}  } }
+])
+
+
+9 -  Mostrar la menor y mayor cantidad ordenada por compra.
+db.cliente.aggregate([
+    { $unwind: "$compras" },
+    { $unwind: "$compras.productos" },
+    { $group: { _id: "$compras.id", totalCant: { $sum: "$compras.productos.cantidad" } } },
+    { $group: { _id: null,  maxCant: { $max: "$totalCant" }, minCant: { $min: "$totalCant" } } },
+    { $project: { _id: 0, minCant: 1, maxCant: 1 }}
+])
