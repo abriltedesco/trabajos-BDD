@@ -1,85 +1,267 @@
-[
+[{
+  "_id": {
+    "$oid": "68de6eb18078468ab1366906"
+  },
+  "dni": 12345678,
+  "nombre": "azul",
+  "apellido": "fernandez",
+  "edad": 20,
+  "compras": [
     {
-    "dni": 12345678,
-    "nombre": "azul", 
-    "apellido": "fernandez",
-    "edad": 20,  
-    "compras": [
-        {
-            "id": 1, "fecha":"2025-09-28",
-            "productos": [ {"id": 1, "nombre": "arroz", "precio": 250, "cantidad": 2},
-                        {"id": 2, "nombre": "fideos", "precio": 150, "cantidad": 1} ]
-        },
-        {
-            "id": 2, "fecha":"2025-10-01",
-            "productos": [ {"id": 3, "nombre": "pan", "precio": 100, "cantidad": 1} ] 
-        },
-        {
-            "id": 3, "fecha":"2025-10-05",
-            "productos": [ {"id": 4, "nombre": "leche", "precio": 200, "cantidad": 3},
-                        {"id": 5, "nombre": "huevos", "precio": 300, "cantidad": 1},
-                        {"id": 6, "nombre": "manteca", "precio": 400, "cantidad": 1} ]
+      "id": 1,
+      "fecha": {
+        "$date": {
+          "$numberLong": "1759017600000"
         }
-    ]  
-    },
-    {
-    "dni": 87654321,
-    "nombre": "gisela", 
-    "apellido": "gomez",
-    "edad": 30,  
-    "compras": [
+      },
+      "productos": [
         {
-            "id": 1, "fecha":"2025-09-30",
-            "productos": [ {"id": 7, "nombre": "azucar", "precio": 180, "cantidad": 1},
-                        {"id": 1, "nombre": "arroz", "precio": 250, "cantidad": 2} ]
+          "id": 1,
+          "nombre": "arroz",
+          "precio": 250,
+          "cantidad": 2
         },
         {
-            "id": 2, "fecha":"2025-10-02",
-            "productos": [ {"id": 8, "nombre": "te", "precio": 250, "cantidad": 1},
-                        {"id": 5, "nombre": "huevos", "precio": 300, "cantidad": 3} ] 
+          "id": 2,
+          "nombre": "fideos",
+          "precio": 150,
+          "cantidad": 1
         }
-    ]  
+      ]
     },
     {
-        "dni": 11223344,
-        "nombre": "jazmin", 
-        "apellido": "lopez",
-        "edad": 25,  
-        "compras": [
-            {
-                "id": 1, "fecha":"2025-10-01",
-                "productos": [ {"id": 9, "nombre": "cafe", "precio": 400, "cantidad": 1},
-                            {"id": 2, "nombre": "fideos", "precio": 150, "cantidad": 2} ]
-            },
-            {
-                "id": 2, "fecha":"2025-10-03",
-                "productos": [ {"id": 1, "nombre": "arroz", "precio": 250, "cantidad": 1},
-                            {"id": 3, "nombre": "pan", "precio": 100, "cantidad": 2},
-                            {"id": 6, "nombre": "manteca", "precio": 400, "cantidad": 1} ] 
-            },
-            {
-                "id": 3, "fecha":"2025-10-06",
-                "productos": [ {"id": 4, "nombre": "leche", "precio": 200, "cantidad": 2} ]
-            }
-        ]
+      "id": 2,
+      "fecha": {
+        "$date": {
+          "$numberLong": "1759276800000"
+        }
+      },
+      "productos": [
+        {
+          "id": 3,
+          "nombre": "pan",
+          "precio": 100,
+          "cantidad": 1
+        }
+      ]
     },
     {
-        "dni": 44332211,
-        "nombre": "pablo", 
-        "apellido": "martinez",
-        "edad": 28,  
-        "compras": [
-            {
-                "id": 1, "fecha":"2025-09-29",
-                "productos": [ {"id": 1, "nombre": "arroz", "precio": 250, "cantidad": 2},
-                               {"id": 7, "nombre": "azucar", "precio": 180, "cantidad": 1} ]
-            },
-            {
-                "id": 2, "fecha":"2025-10-04",
-                "productos": [ {"id": 1, "nombre": "arroz", "precio": 250, "cantidad": 1},
-                               {"id": 8, "nombre": "te", "precio": 250, "cantidad": 2},
-                               {"id": 5, "nombre": "huevos", "precio": 300, "cantidad": 2} ] 
-            }
-        ]
+      "id": 3,
+      "fecha": {
+        "$date": {
+          "$numberLong": "1759622400000"
+        }
+      },
+      "productos": [
+        {
+          "id": 4,
+          "nombre": "leche",
+          "precio": 200,
+          "cantidad": 3
+        },
+        {
+          "id": 5,
+          "nombre": "huevos",
+          "precio": 300,
+          "cantidad": 1
+        },
+        {
+          "id": 6,
+          "nombre": "manteca",
+          "precio": 400,
+          "cantidad": 1
+        }
+      ]
     }
-]
+  ]
+},{
+  "_id": {
+    "$oid": "68de6eb18078468ab1366907"
+  },
+  "dni": 87654321,
+  "nombre": "gisela",
+  "apellido": "gomez",
+  "edad": 30,
+  "compras": [
+    {
+      "id": 4,
+      "fecha": {
+        "$date": {
+          "$numberLong": "1759190400000"
+        }
+      },
+      "productos": [
+        {
+          "id": 7,
+          "nombre": "azucar",
+          "precio": 180,
+          "cantidad": 1
+        },
+        {
+          "id": 1,
+          "nombre": "arroz",
+          "precio": 250,
+          "cantidad": 2
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "fecha": {
+        "$date": {
+          "$numberLong": "1759363200000"
+        }
+      },
+      "productos": [
+        {
+          "id": 8,
+          "nombre": "te",
+          "precio": 250,
+          "cantidad": 1
+        },
+        {
+          "id": 5,
+          "nombre": "huevos",
+          "precio": 300,
+          "cantidad": 3
+        }
+      ]
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "68de6eb18078468ab1366908"
+  },
+  "dni": 11223344,
+  "nombre": "jazmin",
+  "apellido": "lopez",
+  "edad": 25,
+  "compras": [
+    {
+      "id": 6,
+      "fecha": {
+        "$date": {
+          "$numberLong": "1759276800000"
+        }
+      },
+      "productos": [
+        {
+          "id": 9,
+          "nombre": "cafe",
+          "precio": 400,
+          "cantidad": 1
+        },
+        {
+          "id": 2,
+          "nombre": "fideos",
+          "precio": 150,
+          "cantidad": 2
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "fecha": {
+        "$date": {
+          "$numberLong": "1759449600000"
+        }
+      },
+      "productos": [
+        {
+          "id": 1,
+          "nombre": "arroz",
+          "precio": 250,
+          "cantidad": 1
+        },
+        {
+          "id": 3,
+          "nombre": "pan",
+          "precio": 100,
+          "cantidad": 2
+        },
+        {
+          "id": 6,
+          "nombre": "manteca",
+          "precio": 400,
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "fecha": {
+        "$date": {
+          "$numberLong": "1759708800000"
+        }
+      },
+      "productos": [
+        {
+          "id": 4,
+          "nombre": "leche",
+          "precio": 200,
+          "cantidad": 2
+        }
+      ]
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "68de6eb18078468ab1366909"
+  },
+  "dni": 44332211,
+  "nombre": "pablo",
+  "apellido": "martinez",
+  "edad": 28,
+  "compras": [
+    {
+      "id": 8,
+      "fecha": {
+        "$date": {
+          "$numberLong": "1759104000000"
+        }
+      },
+      "productos": [
+        {
+          "id": 1,
+          "nombre": "arroz",
+          "precio": 250,
+          "cantidad": 2
+        },
+        {
+          "id": 7,
+          "nombre": "azucar",
+          "precio": 180,
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "fecha": {
+        "$date": {
+          "$numberLong": "1759536000000"
+        }
+      },
+      "productos": [
+        {
+          "id": 1,
+          "nombre": "arroz",
+          "precio": 250,
+          "cantidad": 1
+        },
+        {
+          "id": 8,
+          "nombre": "te",
+          "precio": 250,
+          "cantidad": 2
+        },
+        {
+          "id": 5,
+          "nombre": "huevos",
+          "precio": 300,
+          "cantidad": 2
+        }
+      ]
+    }
+  ]
+}]

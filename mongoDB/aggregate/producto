@@ -1,0 +1,64 @@
+[{
+  "_id": {
+    "$oid": "68de6f058078468ab136690c"
+  },
+  "id": 1,
+  "nombre": "arroz",
+  "precio": 250
+},{
+  "_id": {
+    "$oid": "68de6f058078468ab136690d"
+  },
+  "id": 2,
+  "nombre": "fideos",
+  "precio": 150
+},{
+  "_id": {
+    "$oid": "68de6f058078468ab136690e"
+  },
+  "id": 3,
+  "nombre": "pan",
+  "precio": 100
+},{
+  "_id": {
+    "$oid": "68de6f058078468ab136690f"
+  },
+  "id": 4,
+  "nombre": "leche",
+  "precio": 200
+},{
+  "_id": {
+    "$oid": "68de6f058078468ab1366910"
+  },
+  "id": 5,
+  "nombre": "huevos",
+  "precio": 300
+},{
+  "_id": {
+    "$oid": "68de6f058078468ab1366911"
+  },
+  "id": 6,
+  "nombre": "manteca",
+  "precio": 400
+},{
+  "_id": {
+    "$oid": "68de6f058078468ab1366912"
+  },
+  "id": 7,
+  "nombre": "azucar",
+  "precio": 180
+},{
+  "_id": {
+    "$oid": "68de6f058078468ab1366913"
+  },
+  "id": 8,
+  "nombre": "te",
+  "precio": 250
+},{
+  "_id": {
+    "$oid": "68de6f058078468ab1366914"
+  },
+  "id": 9,
+  "nombre": "cafe",
+  "precio": 400
+}]
