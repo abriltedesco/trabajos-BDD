@@ -39,7 +39,7 @@ db.cliente.aggregate([
     { $group: { _id:"$compras.productos.id", cantCompras:{$sum:1} } }
 ])
 
-8 -- Mostrar el total (cant unidades) vendido el día de hoy.
+8 -- Mostrar el total (cant unidades) vendido el día de hoy.  (**no funciona**)
 db.cliente.aggregate([
     { $unwind: "$compras" },
     { $match: {  $expr: { $eq:{"$compras.fecha", "$$NOW"} }  } } ,
