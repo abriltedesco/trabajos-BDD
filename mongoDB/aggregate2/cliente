@@ -1,0 +1,53 @@
+[{
+  "_id": {
+    "$oid": "68e7958fdb14d81262cdccaa"
+  },
+  "id": 1,
+  "nombre": "nombre1",
+  "apellido": "apellido1",
+  "mail": "email1@gmail.com",
+  "telefono": 12345678,
+  "compras": [
+    1,
+    2,
+    3
+  ]
+},{
+  "_id": {
+    "$oid": "68e7958fdb14d81262cdccab"
+  },
+  "id": 2,
+  "nombre": "nombre2",
+  "apellido": "apellido2",
+  "mail": "email2@gmail.com",
+  "telefono": 87654321,
+  "compras": [
+    4,
+    5
+  ]
+},{
+  "_id": {
+    "$oid": "68e7958fdb14d81262cdccac"
+  },
+  "id": 3,
+  "nombre": "nombre3",
+  "apellido": "apellido3",
+  "mail": "email3@gmail.com",
+  "telefono": 24135768,
+  "compras": [
+    6,
+    7
+  ]
+},{
+  "_id": {
+    "$oid": "68e7958fdb14d81262cdccad"
+  },
+  "id": 4,
+  "nombre": "nombre4",
+  "apellido": "apellido4",
+  "mail": "email4@gmail.com",
+  "telefono": 13245768,
+  "compras": [
+    8
+  ]
+}]

@@ -1,0 +1,104 @@
+1 - db.cliente.aggregate([
+  { $lookup: {
+      from: "compra",
+      localField: "compras",
+      foreignField: "id",
+      as: "datos_compra"
+    }
+  }
+  { $project:{ _id: 0, cliente_id: "$id", compras: "$datos_compra"} }
+])
+
+2 - Listar el total gastado por cliente, mostrando nombre, apellido y total.
+db.cliente.aggregate([
+  { $lookup: { from: "compra", localField: "compras", foreignField: "id", as: "datos_compra"} },
+  { $unwind: "$datos_compra" },
+  { $unwind: "$datos_compra.productos" },
+  {
+    $group: { id: { id: "$id", nombre: "$nombre", apellido: "$apellido" },
+      totalGastado: {
+        $sum: { $multiply: ["$datos_compra.productos.cantidad", "$datos_compra.productos.precioUnit"] }
+      }
+    }
+  },
+  {
+    $project: {
+      id: 0,
+      nombre: "$id.nombre",
+      apellido: "$id.apellido",
+      total: "$totalGastado"
+    }
+  }
+])
+
+3 - Listar el monto gastado más caro, más barato y el promedio por cliente.
+db.cliente.aggregate([
+  { $lookup: { from: "compra", localField: "compras", foreignField: "id", as: "datosCompra" } },
+  { $unwind: "$datosCompra" },
+  { $unwind: "$datosCompra.productos" },
+  { $group: { _id: {clienteId: "$id", nombre: "$nombre", apellido: "$apellido", compraId: "$datosCompra.id" },
+      montoCompra: { $sum: { $multiply: ["$datosCompra.productos.cantidad", "$datosCompra.productos.precioUnit"] } }}
+  },
+  { $group: {_id: { id: "$_id.clienteId", nombre: "$_id.nombre", apellido: "$_id.apellido" },
+      gastoMaximo: { $max: "$montoCompra" }, gastoMinimo: { $min: "$montoCompra" },gastoPromedio: { $avg: "$montoCompra" }}
+  },
+  {
+    $project: { _id: 0,
+      cliente: { nombre: "$_id.nombre", apellido: "$_id.apellido" },
+      gastoMaximo: 1,
+      gastoMinimo: 1,
+      gastoPromedio: "$gastoPromedio" }
+  }
+])
+
+4 - Listar la compra con más productos, mostrando el id de compra, la cantidad de productos y el
+nombre del cliente.
+db.cliente.aggregate([
+    { $lookup: { from: "compra", localField: "compras", foreignField: "id", as: "datosCompra" } },
+    { $unwind: "$datosCompra" },
+    { $project: { "nombre": 1, idCompra: "$datosCompra.id", cantProductos: { $size: "$datosCompra.productos" }} },
+    { $sort: { cantProductos: -1 } }, { $limit: 1 },
+    { $project: { _id:0, cliente: "$nombre", cantProductos: 1, idCompra: 1}   }
+])
+
+5 - Listar código de cliente, nombre y apellido de los clientes que hicieron más de dos compras.
+db.cliente.aggregate([
+  { $match: { $expr: {$gt:[{$size:"$compras"}, 2] }}},
+  { $project: { _id: 0, clienteId: "$id",  nombreCliente: "$nombre", apellidoCliente: "$apellido"}}
+])
+
+
+6 - Listar las unidades de productos vendidos por mes.
+db.cliente.aggregate([
+  { $lookup: { from: "compra", localField: "compras", foreignField: "id", as: "datosCompra" } },
+  { $unwind: "$datosCompra" },
+  { $unwind: "$datosCompra.productos" },
+  { $group: { _id:{ mes: {$month: "$datosCompra.fecha"}, anio: {$year: "$datosCompra.fecha"}, idProd: "$datosCompra.productos.id" }, 
+            cantVendidas: {$sum: "$datosCompra.productos.cantidad"} }
+  },
+  { $project: { _id: 0,  mes: "$_id.mes", anio: "$_id.anio", idProducto: "$_id.idProd", cantVendidas: 1}},
+  { $sort: { cantVendidas: -1 } }
+])
+
+7 - Listar la cantidad de compras por cliente, por mes.
+db.cliente.aggregate([
+    { $lookup: { from: "compra", localField: "compras", foreignField: "id", as: "datosCompra" } },
+    { $unwind: "$datosCompra" },
+    { $group: { _id: {clienteId:"$id", mes: {$month: "$datosCompr a.fecha"}, anio: {$year: "$datosCompra.fecha"}}, 
+            cantCompras: {$sum:1} }
+    },
+    { $project: {  _id: 0,  clienteId: "$_id.clienteId", mes: "$_id.mes",  anio: "$_id.anio", cantCompras: 1} },
+    { $sort: { anio: 1, mes: 1 } }
+])
+
+8 - Listar el año con más ganancia
+db.cliente.aggregate([
+    { $lookup: { from: "compra", localField: "compras", foreignField: "id", as: "datosCompra" } },
+    { $unwind: "$datosCompra" },
+    { $unwind: "$datosCompra.productos" },
+    { $group: { _id: {anio: {$year: "$datosCompra.fecha"}}, 
+            montoGanado: { $sum: { $multiply: ["$datosCompra.productos.cantidad", "$datosCompra.productos.precioUnit"] } } }
+    },
+    { $project: {  _id: 0,  clienteId: "$_id.clienteId", anio: "$_id.anio", montoGanado: 1} },
+    { $sort: { anio: 1} }
+])
