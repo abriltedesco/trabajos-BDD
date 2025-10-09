@@ -39,14 +39,16 @@ db.cliente.aggregate([
     { $group: { _id:"$compras.productos.id", cantCompras:{$sum:1} } }
 ])
 
-8 -- Mostrar el total (cant unidades) vendido el día de hoy.  (**no funciona**)
+8 - Mostrar el total (cant unidades) vendido el día de hoy. 
 db.cliente.aggregate([
     { $unwind: "$compras" },
-    { $match: {  $expr: { $eq:{"$compras.fecha", "$$NOW"} }  } } ,
+    { $match: { $expr: 
+        { $eq: [{$dateToString:{format:"%Y-%m-%d", date:"$compras.fecha"}}, {$dateToString:{ format: "%Y-%m-%d", date: "$$NOW"}}]} 
+    }},
     { $unwind: "$compras.productos" },
-    { $group: { _id: null, total:{$sum:"$compras.productos.cantidad"}  } }
+    { $group: { _id: null, total:{$sum:"$compras.productos.cantidad"} } },
+    { $project: { _id: 0, total: 1 } }
 ])
-
 
 9 -  Mostrar la menor y mayor cantidad ordenada por compra.
 db.cliente.aggregate([
