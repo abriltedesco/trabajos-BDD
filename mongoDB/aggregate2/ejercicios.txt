@@ -14,13 +14,9 @@ db.cliente.aggregate([
   { $lookup: { from: "compra", localField: "compras", foreignField: "id", as: "datos_compra"} },
   { $unwind: "$datos_compra" },
   { $unwind: "$datos_compra.productos" },
-  {
-    $group: { id: { id: "$id", nombre: "$nombre", apellido: "$apellido" },
-      totalGastado: {
-        $sum: { $multiply: ["$datos_compra.productos.cantidad", "$datos_compra.productos.precioUnit"] }
-      }
-    }
-  },
+  { $group: { id: { id: "$id", nombre: "$nombre", apellido: "$apellido" },
+      totalGastado: {$sum: { $multiply: ["$datos_compra.productos.cantidad", "$datos_compra.productos.precioUnit"] }}
+  } },
   {
     $project: {
       id: 0,
